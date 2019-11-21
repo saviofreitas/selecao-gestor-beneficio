@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="movimentacaoBeneficio">
+            <h2><span jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.detail.title">Movimentacao Beneficio</span> {{movimentacaoBeneficio.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.dataTramitacao">Data Tramitacao</span></dt>
+                <dd>
+                    <span>{{movimentacaoBeneficio.dataTramitacao}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.responsavel">Responsavel</span></dt>
+                <dd>
+                    <span>{{movimentacaoBeneficio.responsavel}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.beneficio">Beneficio</span></dt>
+                <dd>
+                    <div *ngIf="movimentacaoBeneficio.beneficio">
+                        <a [routerLink]="['/beneficio', movimentacaoBeneficio.beneficio?.id, 'view']">{{movimentacaoBeneficio.beneficio?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.setorOrigem">Setor Origem</span></dt>
+                <dd>
+                    <div *ngIf="movimentacaoBeneficio.setorOrigem">
+                        <a [routerLink]="['/setor', movimentacaoBeneficio.setorOrigem?.id, 'view']">{{movimentacaoBeneficio.setorOrigem?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.setorDestino">Setor Destino</span></dt>
+                <dd>
+                    <div *ngIf="movimentacaoBeneficio.setorDestino">
+                        <a [routerLink]="['/setor', movimentacaoBeneficio.setorDestino?.id, 'view']">{{movimentacaoBeneficio.setorDestino?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/movimentacao-beneficio', movimentacaoBeneficio.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

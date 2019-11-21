@@ -1,0 +1,49 @@
+{
+    "name": "MovimentacaoBeneficio",
+    "fields": [
+        {
+            "fieldName": "dataTramitacao",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "responsavel",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "beneficio",
+            "otherEntityRelationshipName": "movimentacaoBeneficio",
+            "relationshipName": "beneficio",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "setor",
+            "otherEntityRelationshipName": "movimentacaoBeneficio",
+            "relationshipName": "setorOrigem",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "setor",
+            "otherEntityRelationshipName": "movimentacaoBeneficio",
+            "relationshipName": "setorDestino",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191121165524",
+    "entityTableName": "movimentacao_beneficio",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
