@@ -1,0 +1,22 @@
+{
+  "gestorBeneficioApp": {
+    "categoriaAnexo": {
+      "home": {
+        "title": "Categoria Anexos",
+        "createLabel": "Create a new Categoria Anexo",
+        "createOrEditLabel": "Create or edit a Categoria Anexo",
+        "notFound": "No Categoria Anexos found"
+      },
+      "created": "A new Categoria Anexo is created with identifier {{ param }}",
+      "updated": "A Categoria Anexo is updated with identifier {{ param }}",
+      "deleted": "A Categoria Anexo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Categoria Anexo {{ id }}?"
+      },
+      "detail": {
+        "title": "Categoria Anexo"
+      },
+      "descricao": "Descricao"
+    }
+  }
+}

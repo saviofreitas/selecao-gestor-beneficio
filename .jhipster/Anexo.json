@@ -1,0 +1,45 @@
+{
+    "name": "Anexo",
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "caminho",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "categoriaAnexo",
+            "otherEntityRelationshipName": "anexo",
+            "relationshipName": "categoria",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "beneficio",
+            "otherEntityRelationshipName": "anexos",
+            "relationshipName": "beneficio",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191121165522",
+    "entityTableName": "anexo",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

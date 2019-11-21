@@ -1,0 +1,52 @@
+{
+    "name": "Beneficio",
+    "fields": [
+        {
+            "fieldName": "dataCriacao",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dataUltimaMovimentacao",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "situacao",
+            "fieldType": "SituacaoBeneficio",
+            "fieldValues": "PENDENTE,INDEFERIDO,DEFERIDO",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "anexo",
+            "otherEntityRelationshipName": "beneficio",
+            "relationshipName": "anexos"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "servidor",
+            "otherEntityRelationshipName": "beneficios",
+            "relationshipName": "servidor",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191121165520",
+    "entityTableName": "beneficio",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-movimentacao-beneficio-heading" jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.home.createOrEditLabel">Create or edit a Movimentacao Beneficio</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.dataTramitacao" for="field_dataTramitacao">Data Tramitacao</label>
+                    <div class="d-flex">
+                        <input id="field_dataTramitacao" type="datetime-local" class="form-control" name="dataTramitacao" formControlName="dataTramitacao" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('dataTramitacao').invalid && (editForm.get('dataTramitacao').dirty || editForm.get('dataTramitacao').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dataTramitacao').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('dataTramitacao').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.responsavel" for="field_responsavel">Responsavel</label>
+                    <input type="text" class="form-control" name="responsavel" id="field_responsavel"
+                           formControlName="responsavel"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.beneficio" for="field_beneficio">Beneficio</label>
+                    <select class="form-control" id="field_beneficio" name="beneficio" formControlName="beneficio">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="beneficioOption.id === editForm.get('beneficio').value?.id ? editForm.get('beneficio').value : beneficioOption" *ngFor="let beneficioOption of beneficios; trackBy: trackBeneficioById">{{beneficioOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.setorOrigem" for="field_setorOrigem">Setor Origem</label>
+                    <select class="form-control" id="field_setorOrigem" name="setorOrigem" formControlName="setorOrigem">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="setorOption.id === editForm.get('setorOrigem').value?.id ? editForm.get('setorOrigem').value : setorOption" *ngFor="let setorOption of setors; trackBy: trackSetorById">{{setorOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.setorDestino" for="field_setorDestino">Setor Destino</label>
+                    <select class="form-control" id="field_setorDestino" name="setorDestino" formControlName="setorDestino">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="setorOption.id === editForm.get('setorDestino').value?.id ? editForm.get('setorDestino').value : setorOption" *ngFor="let setorOption of setors; trackBy: trackSetorById">{{setorOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+{
+  "gestorBeneficioApp": {
+    "movimentacaoBeneficio": {
+      "home": {
+        "title": "Movimentacao Beneficios",
+        "createLabel": "Create a new Movimentacao Beneficio",
+        "createOrEditLabel": "Create or edit a Movimentacao Beneficio",
+        "notFound": "No Movimentacao Beneficios found"
+      },
+      "created": "A new Movimentacao Beneficio is created with identifier {{ param }}",
+      "updated": "A Movimentacao Beneficio is updated with identifier {{ param }}",
+      "deleted": "A Movimentacao Beneficio is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Movimentacao Beneficio {{ id }}?"
+      },
+      "detail": {
+        "title": "Movimentacao Beneficio"
+      },
+      "dataTramitacao": "Data Tramitacao",
+      "responsavel": "Responsavel",
+      "beneficio": "Beneficio",
+      "setorOrigem": "Setor Origem",
+      "setorDestino": "Setor Destino"
+    }
+  }
+}

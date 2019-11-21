@@ -1,0 +1,64 @@
+entity Orgao {
+	descricao String required
+}
+
+entity Servidor {
+	nome String required,
+    cpf String required,
+    matricula Integer required
+}
+
+enum SituacaoBeneficio {
+	PENDENTE,
+    INDEFERIDO,
+    DEFERIDO
+}
+entity Beneficio {
+	dataCriacao Instant required,
+	dataUltimaMovimentacao Instant required,
+    situacao SituacaoBeneficio required
+}
+
+entity CategoriaAnexo {
+	descricao String required
+}
+
+entity Anexo {
+	descricao String required,
+    caminho String required
+}
+
+entity Setor {
+	descricao String required
+}
+
+entity MovimentacaoBeneficio {
+	dataTramitacao Instant required,
+    responsavel String    
+}
+
+relationship ManyToOne {
+	Anexo{categoria} to CategoriaAnexo,
+    MovimentacaoBeneficio{beneficio} to Beneficio,
+    MovimentacaoBeneficio{setorOrigem} to Setor,
+    MovimentacaoBeneficio{setorDestino} to Setor,
+    Servidor{orgao} to Orgao
+}
+
+relationship OneToMany {
+	Servidor{beneficios} to Beneficio,
+    Beneficio{anexos} to Anexo
+}
+
+// Set pagination options
+paginate MovimentacaoBeneficio with infinite-scroll
+paginate Servidor with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

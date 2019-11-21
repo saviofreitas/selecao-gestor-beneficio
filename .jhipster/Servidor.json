@@ -1,0 +1,51 @@
+{
+    "name": "Servidor",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cpf",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "matricula",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "beneficio",
+            "otherEntityRelationshipName": "servidor",
+            "relationshipName": "beneficios"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "orgao",
+            "otherEntityRelationshipName": "servidor",
+            "relationshipName": "orgao",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191121165519",
+    "entityTableName": "servidor",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

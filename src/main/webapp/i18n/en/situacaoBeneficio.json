@@ -1,0 +1,10 @@
+{
+  "gestorBeneficioApp": {
+    "SituacaoBeneficio": {
+      "null": "",
+      "PENDENTE": "PENDENTE",
+      "INDEFERIDO": "INDEFERIDO",
+      "DEFERIDO": "DEFERIDO"
+    }
+  }
+}
