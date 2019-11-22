@@ -22,7 +22,7 @@
             <th scope="col"  jhiSortBy="nome"><span jhiTranslate="gestorBeneficioApp.servidor.nome">Nome</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="cpf"><span jhiTranslate="gestorBeneficioApp.servidor.cpf">Cpf</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="matricula"><span jhiTranslate="gestorBeneficioApp.servidor.matricula">Matricula</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="orgao.descricao"><span jhiTranslate="gestorBeneficioApp.servidor.orgao">Orgao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="orgao.id"><span jhiTranslate="gestorBeneficioApp.servidor.orgao">Orgao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -34,7 +34,7 @@
                 <td>{{servidor.matricula}}</td>
                 <td>
                     <div *ngIf="servidor.orgao">
-                        <a [routerLink]="['/orgao', servidor.orgao?.id, 'view' ]" >{{servidor.orgao?.descricao}}</a>
+                        <a [routerLink]="['/orgao', servidor.orgao?.id, 'view' ]" >{{servidor.orgao?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

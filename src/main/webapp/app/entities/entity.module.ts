@@ -32,6 +32,10 @@ import { RouterModule } from '@angular/router';
         path: 'movimentacao-beneficio',
         loadChildren: () =>
           import('./movimentacao-beneficio/movimentacao-beneficio.module').then(m => m.GestorBeneficioMovimentacaoBeneficioModule)
+      },
+      {
+        path: 'conteudo-anexo',
+        loadChildren: () => import('./conteudo-anexo/conteudo-anexo.module').then(m => m.GestorBeneficioConteudoAnexoModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

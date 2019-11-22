@@ -37,8 +37,11 @@ public class AnexoResourceIT {
     private static final String DEFAULT_DESCRICAO = "AAAAAAAAAA";
     private static final String UPDATED_DESCRICAO = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CAMINHO = "AAAAAAAAAA";
-    private static final String UPDATED_CAMINHO = "BBBBBBBBBB";
+    private static final Long DEFAULT_TAMANHO = 1L;
+    private static final Long UPDATED_TAMANHO = 2L;
+
+    private static final String DEFAULT_MIME_TYPE = "AAAAAAAAAA";
+    private static final String UPDATED_MIME_TYPE = "BBBBBBBBBB";
 
     @Autowired
     private AnexoRepository anexoRepository;
@@ -86,7 +89,8 @@ public class AnexoResourceIT {
     public static Anexo createEntity(EntityManager em) {
         Anexo anexo = new Anexo()
             .descricao(DEFAULT_DESCRICAO)
-            .caminho(DEFAULT_CAMINHO);
+            .tamanho(DEFAULT_TAMANHO)
+            .mimeType(DEFAULT_MIME_TYPE);
         return anexo;
     }
     /**
@@ -98,7 +102,8 @@ public class AnexoResourceIT {
     public static Anexo createUpdatedEntity(EntityManager em) {
         Anexo anexo = new Anexo()
             .descricao(UPDATED_DESCRICAO)
-            .caminho(UPDATED_CAMINHO);
+            .tamanho(UPDATED_TAMANHO)
+            .mimeType(UPDATED_MIME_TYPE);
         return anexo;
     }
 
@@ -123,7 +128,8 @@ public class AnexoResourceIT {
         assertThat(anexoList).hasSize(databaseSizeBeforeCreate + 1);
         Anexo testAnexo = anexoList.get(anexoList.size() - 1);
         assertThat(testAnexo.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
-        assertThat(testAnexo.getCaminho()).isEqualTo(DEFAULT_CAMINHO);
+        assertThat(testAnexo.getTamanho()).isEqualTo(DEFAULT_TAMANHO);
+        assertThat(testAnexo.getMimeType()).isEqualTo(DEFAULT_MIME_TYPE);
     }
 
     @Test
@@ -166,10 +172,10 @@ public class AnexoResourceIT {
 
     @Test
     @Transactional
-    public void checkCaminhoIsRequired() throws Exception {
+    public void checkTamanhoIsRequired() throws Exception {
         int databaseSizeBeforeTest = anexoRepository.findAll().size();
         // set the field null
-        anexo.setCaminho(null);
+        anexo.setTamanho(null);
 
         // Create the Anexo, which fails.
 
@@ -194,7 +200,8 @@ public class AnexoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(anexo.getId().intValue())))
             .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
-            .andExpect(jsonPath("$.[*].caminho").value(hasItem(DEFAULT_CAMINHO)));
+            .andExpect(jsonPath("$.[*].tamanho").value(hasItem(DEFAULT_TAMANHO.intValue())))
+            .andExpect(jsonPath("$.[*].mimeType").value(hasItem(DEFAULT_MIME_TYPE)));
     }
     
     @Test
@@ -209,7 +216,8 @@ public class AnexoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(anexo.getId().intValue()))
             .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO))
-            .andExpect(jsonPath("$.caminho").value(DEFAULT_CAMINHO));
+            .andExpect(jsonPath("$.tamanho").value(DEFAULT_TAMANHO.intValue()))
+            .andExpect(jsonPath("$.mimeType").value(DEFAULT_MIME_TYPE));
     }
 
     @Test
@@ -234,7 +242,8 @@ public class AnexoResourceIT {
         em.detach(updatedAnexo);
         updatedAnexo
             .descricao(UPDATED_DESCRICAO)
-            .caminho(UPDATED_CAMINHO);
+            .tamanho(UPDATED_TAMANHO)
+            .mimeType(UPDATED_MIME_TYPE);
 
         restAnexoMockMvc.perform(put("/api/anexos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -246,7 +255,8 @@ public class AnexoResourceIT {
         assertThat(anexoList).hasSize(databaseSizeBeforeUpdate);
         Anexo testAnexo = anexoList.get(anexoList.size() - 1);
         assertThat(testAnexo.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
-        assertThat(testAnexo.getCaminho()).isEqualTo(UPDATED_CAMINHO);
+        assertThat(testAnexo.getTamanho()).isEqualTo(UPDATED_TAMANHO);
+        assertThat(testAnexo.getMimeType()).isEqualTo(UPDATED_MIME_TYPE);
     }
 
     @Test

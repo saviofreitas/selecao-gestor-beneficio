@@ -21,17 +21,33 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gestorBeneficioApp.anexo.caminho" for="field_caminho">Caminho</label>
-                    <input type="text" class="form-control" name="caminho" id="field_caminho"
-                           formControlName="caminho"/>
-                    <div *ngIf="editForm.get('caminho').invalid && (editForm.get('caminho').dirty || editForm.get('caminho').touched)">
+                    <label class="form-control-label" jhiTranslate="gestorBeneficioApp.anexo.tamanho" for="field_tamanho">Tamanho</label>
+                    <input type="number" class="form-control" name="tamanho" id="field_tamanho"
+                           formControlName="tamanho"/>
+                    <div *ngIf="editForm.get('tamanho').invalid && (editForm.get('tamanho').dirty || editForm.get('tamanho').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('caminho').errors.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('tamanho').errors.required" jhiTranslate="entity.validation.required">
                         This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('tamanho')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
                         </small>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestorBeneficioApp.anexo.mimeType" for="field_mimeType">Mime Type</label>
+                    <input type="text" class="form-control" name="mimeType" id="field_mimeType"
+                           formControlName="mimeType"/>
+                </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestorBeneficioApp.anexo.conteudoAnexo" for="field_conteudoAnexo">Conteudo Anexo</label>
+                    <select class="form-control" id="field_conteudoAnexo" name="conteudoAnexo" formControlName="conteudoAnexo">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="conteudoAnexoOption.id === editForm.get('conteudoAnexo').value?.id ? editForm.get('conteudoAnexo').value : conteudoAnexoOption" *ngFor="let conteudoAnexoOption of conteudoanexos; trackBy: trackConteudoAnexoById">{{conteudoAnexoOption.id}}</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestorBeneficioApp.anexo.categoria" for="field_categoria">Categoria</label>
                     <select class="form-control" id="field_categoria" name="categoria" formControlName="categoria">

@@ -14,6 +14,11 @@
         "anexo": "Anexos",
         "setor": "Setor",
         "movimentacaoBeneficio": "Movimentação Benefício",
+        "orgao": "Orgao",
+        "beneficio": "Beneficio",
+        "anexo": "Anexo",
+        "conteudoAnexo": "Conteudo Anexo",
+        "movimentacaoBeneficio": "Movimentacao Beneficio",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

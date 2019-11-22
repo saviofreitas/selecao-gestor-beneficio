@@ -9,9 +9,19 @@
                 <dd>
                     <span>{{anexo.descricao}}</span>
                 </dd>
-                <dt><span jhiTranslate="gestorBeneficioApp.anexo.caminho">Caminho</span></dt>
+                <dt><span jhiTranslate="gestorBeneficioApp.anexo.tamanho">Tamanho</span></dt>
                 <dd>
-                    <span>{{anexo.caminho}}</span>
+                    <span>{{anexo.tamanho}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestorBeneficioApp.anexo.mimeType">Mime Type</span></dt>
+                <dd>
+                    <span>{{anexo.mimeType}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestorBeneficioApp.anexo.conteudoAnexo">Conteudo Anexo</span></dt>
+                <dd>
+                    <div *ngIf="anexo.conteudoAnexo">
+                        <a [routerLink]="['/conteudo-anexo', anexo.conteudoAnexo?.id, 'view']">{{anexo.conteudoAnexo?.id}}</a>
+                    </div>
                 </dd>
                 <dt><span jhiTranslate="gestorBeneficioApp.anexo.categoria">Categoria</span></dt>
                 <dd>

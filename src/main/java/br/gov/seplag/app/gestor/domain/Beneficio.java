@@ -25,6 +25,10 @@ public class Beneficio implements Serializable {
     private Long id;
 
     @NotNull
+    @Column(name = "descricao", nullable = false)
+    private String descricao;
+
+    @NotNull
     @Column(name = "data_criacao", nullable = false)
     private Instant dataCriacao;
 
@@ -51,6 +55,19 @@ public class Beneficio implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public Beneficio descricao(String descricao) {
+        this.descricao = descricao;
+        return this;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public Instant getDataCriacao() {
@@ -151,6 +168,7 @@ public class Beneficio implements Serializable {
     public String toString() {
         return "Beneficio{" +
             "id=" + getId() +
+            ", descricao='" + getDescricao() + "'" +
             ", dataCriacao='" + getDataCriacao() + "'" +
             ", dataUltimaMovimentacao='" + getDataUltimaMovimentacao() + "'" +
             ", situacao='" + getSituacao() + "'" +

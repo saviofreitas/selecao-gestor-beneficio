@@ -1,1 +1,11 @@
-id;data_criacao;data_ultima_movimentacao;situacao;descricao
+id;descricao;data_criacao;data_ultima_movimentacao;situacao
+1;deposit Internal;2019-11-21T16:32:53;2019-11-21T21:59:23;PENDENTE
+2;pixel withdrawal;2019-11-21T15:39:21;2019-11-21T23:28:45;DEFERIDO
+3;hard drive Robust Networked;2019-11-22T11:58:42;2019-11-22T00:24:12;PENDENTE
+4;withdrawal knowledge base Buckinghamshire;2019-11-21T15:10:03;2019-11-22T09:36:17;INDEFERIDO
+5;white Brand Money Market Account;2019-11-21T20:16:27;2019-11-22T09:04:46;DEFERIDO
+6;digital maroon;2019-11-21T15:31:39;2019-11-21T15:45:01;INDEFERIDO
+7;Direct;2019-11-22T06:25:04;2019-11-22T07:28:42;DEFERIDO
+8;Games;2019-11-22T00:41:27;2019-11-22T00:07:51;PENDENTE
+9;User-centric Gloves;2019-11-22T07:41:54;2019-11-22T00:29:52;DEFERIDO
+10;Functionality;2019-11-22T06:54:22;2019-11-21T20:14:15;DEFERIDO

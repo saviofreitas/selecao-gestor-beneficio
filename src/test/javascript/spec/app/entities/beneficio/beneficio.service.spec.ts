@@ -25,7 +25,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new Beneficio(0, currentDate, currentDate, SituacaoBeneficio.PENDENTE);
+      elemDefault = new Beneficio(0, 'AAAAAAA', currentDate, currentDate, SituacaoBeneficio.PENDENTE);
     });
 
     describe('Service methods', () => {
@@ -75,6 +75,7 @@ describe('Service Tests', () => {
       it('should update a Beneficio', () => {
         const returnedFromService = Object.assign(
           {
+            descricao: 'BBBBBB',
             dataCriacao: currentDate.format(DATE_TIME_FORMAT),
             dataUltimaMovimentacao: currentDate.format(DATE_TIME_FORMAT),
             situacao: 'BBBBBB'
@@ -101,6 +102,7 @@ describe('Service Tests', () => {
       it('should return a list of Beneficio', () => {
         const returnedFromService = Object.assign(
           {
+            descricao: 'BBBBBB',
             dataCriacao: currentDate.format(DATE_TIME_FORMAT),
             dataUltimaMovimentacao: currentDate.format(DATE_TIME_FORMAT),
             situacao: 'BBBBBB'
