@@ -2,8 +2,8 @@
   "gestorBeneficioApp": {
     "beneficio": {
       "home": {
-        "title": "Beneficios",
-        "createLabel": "Create a new Beneficio",
+        "title": "Benefícios",
+        "createLabel": "Novo Benefício",
         "createOrEditLabel": "Create or edit a Beneficio",
         "notFound": "No Beneficios found"
       },

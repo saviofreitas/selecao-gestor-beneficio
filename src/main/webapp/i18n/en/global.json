@@ -1,29 +1,25 @@
 {
   "global": {
-    "title": "GestorBeneficio",
+    "title": "Sistema Gestor de Beneficios",
     "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
     "menu": {
       "home": "Home",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Entities",
-        "orgao": "Orgao",
+        "main": "Cadastros",
+        "orgao": "Órgão",
         "servidor": "Servidor",
-        "beneficio": "Beneficio",
+        "beneficio": "Benefício",
         "categoriaAnexo": "Categoria Anexo",
-        "anexo": "Anexo",
+        "anexo": "Anexos",
         "setor": "Setor",
-        "movimentacaoBeneficio": "Movimentacao Beneficio",
+        "movimentacaoBeneficio": "Movimentação Benefício",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
-        "main": "Account",
-        "settings": "Settings",
-        "password": "Password",
-        "sessions": "Sessions",
-        "login": "Sign in",
-        "logout": "Sign out",
-        "register": "Register"
+        "main": "Conta",
+        "login": "Entrar",
+        "logout": "Sair"
       },
       "admin": {
         "main": "Administration",
@@ -99,13 +95,13 @@
     "action": {
       "addblob": "Add blob",
       "addimage": "Add image",
-      "back": "Back",
-      "cancel": "Cancel",
-      "delete": "Delete",
-      "edit": "Edit",
-      "open": "Open",
-      "save": "Save",
-      "view": "View"
+      "back": "Voltar",
+      "cancel": "Cancelar",
+      "delete": "Excluir",
+      "edit": "Editar",
+      "open": "Abrir",
+      "save": "Salvar",
+      "view": "Ver"
     },
     "detail": {
       "field": "Field",
@@ -139,5 +135,5 @@
     "idexists": "A new {{ entityName }} cannot already have an ID",
     "idnull": "Invalid ID"
   },
-  "footer": "This is your footer"
+  "footer": "Esse foi corrido :)"
 }

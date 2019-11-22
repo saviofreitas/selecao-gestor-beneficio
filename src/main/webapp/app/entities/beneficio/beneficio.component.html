@@ -1,10 +1,11 @@
+
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="gestorBeneficioApp.beneficio.home.title">Beneficios</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-beneficio" [routerLink]="['/beneficio/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="gestorBeneficioApp.beneficio.home.createLabel">
-            Create a new Beneficio
+            Novo Benefício
             </span>
         </button>
     </h2>
@@ -12,7 +13,7 @@
     <jhi-alert></jhi-alert>
     <br/>
     <div class="alert alert-warning" *ngIf="beneficios?.length === 0">
-        <span jhiTranslate="gestorBeneficioApp.beneficio.home.notFound">No beneficios found</span>
+        <span jhiTranslate="gestorBeneficioApp.beneficio.home.notFound">Nenhum registro</span>
     </div>
     <div class="table-responsive" *ngIf="beneficios?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
@@ -34,7 +35,7 @@
                 <td jhiTranslate="{{'gestorBeneficioApp.SituacaoBeneficio.' + beneficio.situacao}}">{{beneficio.situacao}}</td>
                 <td>
                     <div *ngIf="beneficio.servidor">
-                        <a [routerLink]="['/servidor', beneficio.servidor?.id, 'view' ]" >{{beneficio.servidor?.id}}</a>
+                        <a [routerLink]="['/servidor', beneficio.servidor?.id, 'view' ]" >{{beneficio.servidor?.nome}}</a>
                     </div>
                 </td>
                 <td class="text-right">
@@ -43,18 +44,18 @@
                                 [routerLink]="['/beneficio', beneficio.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/beneficio', beneficio.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
                         </button>
                         <button type="submit" (click)="delete(beneficio)"
                                 class="btn btn-danger btn-sm">
                             <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
                         </button>
                     </div>
                 </td>

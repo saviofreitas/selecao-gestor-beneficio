@@ -20,7 +20,7 @@
                 <dt><span jhiTranslate="gestorBeneficioApp.servidor.orgao">Orgao</span></dt>
                 <dd>
                     <div *ngIf="servidor.orgao">
-                        <a [routerLink]="['/orgao', servidor.orgao?.id, 'view']">{{servidor.orgao?.id}}</a>
+                        <a [routerLink]="['/orgao', servidor.orgao?.id, 'view']">{{servidor.orgao?.descricao}}</a>
                     </div>
                 </dd>
             </dl>

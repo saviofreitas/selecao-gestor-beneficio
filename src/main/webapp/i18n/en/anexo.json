@@ -3,9 +3,9 @@
     "anexo": {
       "home": {
         "title": "Anexos",
-        "createLabel": "Create a new Anexo",
-        "createOrEditLabel": "Create or edit a Anexo",
-        "notFound": "No Anexos found"
+        "createLabel": "Novo Anexo",
+        "createOrEditLabel": "Manter Anexo",
+        "notFound": "Nenhum registro encontrado"
       },
       "created": "A new Anexo is created with identifier {{ param }}",
       "updated": "A Anexo is updated with identifier {{ param }}",
