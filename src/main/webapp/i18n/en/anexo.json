@@ -3,9 +3,9 @@
     "anexo": {
       "home": {
         "title": "Anexos",
-        "createLabel": "Novo Anexo",
-        "createOrEditLabel": "Manter Anexo",
-        "notFound": "Nenhum registro encontrado"
+        "createLabel": "Create a new Anexo",
+        "createOrEditLabel": "Create or edit a Anexo",
+        "notFound": "No Anexos found"
       },
       "created": "A new Anexo is created with identifier {{ param }}",
       "updated": "A Anexo is updated with identifier {{ param }}",
@@ -17,7 +17,9 @@
         "title": "Anexo"
       },
       "descricao": "Descricao",
-      "caminho": "Caminho",
+      "tamanho": "Tamanho",
+      "mimeType": "Mime Type",
+      "conteudoAnexo": "Conteudo Anexo",
       "categoria": "Categoria",
       "beneficio": "Beneficio"
     }

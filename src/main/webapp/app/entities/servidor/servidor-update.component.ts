@@ -25,7 +25,7 @@ export class ServidorUpdateComponent implements OnInit {
     nome: [null, [Validators.required]],
     cpf: [null, [Validators.required]],
     matricula: [null, [Validators.required]],
-    orgao: [null, [Validators.required]]
+    orgao: []
   });
 
   constructor(

@@ -14,6 +14,7 @@ enum SituacaoBeneficio {
     DEFERIDO
 }
 entity Beneficio {
+	descricao String required,
 	dataCriacao Instant required,
 	dataUltimaMovimentacao Instant required,
     situacao SituacaoBeneficio required
@@ -25,7 +26,12 @@ entity CategoriaAnexo {
 
 entity Anexo {
 	descricao String required,
-    caminho String required
+    tamanho Long required,
+    mimeType String
+}
+
+entity ConteudoAnexo {
+	data Blob required
 }
 
 entity Setor {
@@ -36,6 +42,11 @@ entity MovimentacaoBeneficio {
 	dataTramitacao Instant required,
     responsavel String    
 }
+
+relationship OneToOne {
+  Anexo{conteudoAnexo} to ConteudoAnexo{anexo(id) required}
+}
+
 
 relationship ManyToOne {
 	Anexo{categoria} to CategoriaAnexo,

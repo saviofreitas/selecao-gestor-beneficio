@@ -1,0 +1,23 @@
+{
+  "gestorBeneficioApp": {
+    "conteudoAnexo": {
+      "home": {
+        "title": "Conteudo Anexos",
+        "createLabel": "Create a new Conteudo Anexo",
+        "createOrEditLabel": "Create or edit a Conteudo Anexo",
+        "notFound": "No Conteudo Anexos found"
+      },
+      "created": "A new Conteudo Anexo is created with identifier {{ param }}",
+      "updated": "A Conteudo Anexo is updated with identifier {{ param }}",
+      "deleted": "A Conteudo Anexo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Conteudo Anexo {{ id }}?"
+      },
+      "detail": {
+        "title": "Conteudo Anexo"
+      },
+      "data": "Data",
+      "anexo": "Anexo"
+    }
+  }
+}

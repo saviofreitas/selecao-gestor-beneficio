@@ -9,14 +9,26 @@
             ]
         },
         {
-            "fieldName": "caminho",
-            "fieldType": "String",
+            "fieldName": "tamanho",
+            "fieldType": "Long",
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "mimeType",
+            "fieldType": "String"
         }
     ],
     "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "conteudoAnexo",
+            "otherEntityRelationshipName": "anexo",
+            "relationshipName": "conteudoAnexo",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "categoriaAnexo",

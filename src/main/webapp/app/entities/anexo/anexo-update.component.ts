@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 import { JhiAlertService } from 'ng-jhipster';
 import { IAnexo, Anexo } from 'app/shared/model/anexo.model';
 import { AnexoService } from './anexo.service';
+import { IConteudoAnexo } from 'app/shared/model/conteudo-anexo.model';
+import { ConteudoAnexoService } from 'app/entities/conteudo-anexo/conteudo-anexo.service';
 import { ICategoriaAnexo } from 'app/shared/model/categoria-anexo.model';
 import { CategoriaAnexoService } from 'app/entities/categoria-anexo/categoria-anexo.service';
 import { IBeneficio } from 'app/shared/model/beneficio.model';
@@ -20,6 +22,8 @@ import { BeneficioService } from 'app/entities/beneficio/beneficio.service';
 export class AnexoUpdateComponent implements OnInit {
   isSaving: boolean;
 
+  conteudoanexos: IConteudoAnexo[];
+
   categoriaanexos: ICategoriaAnexo[];
 
   beneficios: IBeneficio[];
@@ -27,7 +31,9 @@ export class AnexoUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     descricao: [null, [Validators.required]],
-    caminho: [null, [Validators.required]],
+    tamanho: [null, [Validators.required]],
+    mimeType: [],
+    conteudoAnexo: [],
     categoria: [],
     beneficio: []
   });
@@ -35,6 +41,7 @@ export class AnexoUpdateComponent implements OnInit {
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected anexoService: AnexoService,
+    protected conteudoAnexoService: ConteudoAnexoService,
     protected categoriaAnexoService: CategoriaAnexoService,
     protected beneficioService: BeneficioService,
     protected activatedRoute: ActivatedRoute,
@@ -46,6 +53,21 @@ export class AnexoUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ anexo }) => {
       this.updateForm(anexo);
     });
+    this.conteudoAnexoService.query({ filter: 'anexo-is-null' }).subscribe(
+      (res: HttpResponse<IConteudoAnexo[]>) => {
+        if (!this.editForm.get('conteudoAnexo').value || !this.editForm.get('conteudoAnexo').value.id) {
+          this.conteudoanexos = res.body;
+        } else {
+          this.conteudoAnexoService
+            .find(this.editForm.get('conteudoAnexo').value.id)
+            .subscribe(
+              (subRes: HttpResponse<IConteudoAnexo>) => (this.conteudoanexos = [subRes.body].concat(res.body)),
+              (subRes: HttpErrorResponse) => this.onError(subRes.message)
+            );
+        }
+      },
+      (res: HttpErrorResponse) => this.onError(res.message)
+    );
     this.categoriaAnexoService
       .query()
       .subscribe(
@@ -61,7 +83,9 @@ export class AnexoUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: anexo.id,
       descricao: anexo.descricao,
-      caminho: anexo.caminho,
+      tamanho: anexo.tamanho,
+      mimeType: anexo.mimeType,
+      conteudoAnexo: anexo.conteudoAnexo,
       categoria: anexo.categoria,
       beneficio: anexo.beneficio
     });
@@ -86,7 +110,9 @@ export class AnexoUpdateComponent implements OnInit {
       ...new Anexo(),
       id: this.editForm.get(['id']).value,
       descricao: this.editForm.get(['descricao']).value,
-      caminho: this.editForm.get(['caminho']).value,
+      tamanho: this.editForm.get(['tamanho']).value,
+      mimeType: this.editForm.get(['mimeType']).value,
+      conteudoAnexo: this.editForm.get(['conteudoAnexo']).value,
       categoria: this.editForm.get(['categoria']).value,
       beneficio: this.editForm.get(['beneficio']).value
     };
@@ -106,6 +132,10 @@ export class AnexoUpdateComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
+  }
+
+  trackConteudoAnexoById(index: number, item: IConteudoAnexo) {
+    return item.id;
   }
 
   trackCategoriaAnexoById(index: number, item: ICategoriaAnexo) {

@@ -5,6 +5,7 @@ import { SituacaoBeneficio } from 'app/shared/model/enumerations/situacao-benefi
 
 export interface IBeneficio {
   id?: number;
+  descricao?: string;
   dataCriacao?: Moment;
   dataUltimaMovimentacao?: Moment;
   situacao?: SituacaoBeneficio;
@@ -15,6 +16,7 @@ export interface IBeneficio {
 export class Beneficio implements IBeneficio {
   constructor(
     public id?: number,
+    public descricao?: string,
     public dataCriacao?: Moment,
     public dataUltimaMovimentacao?: Moment,
     public situacao?: SituacaoBeneficio,

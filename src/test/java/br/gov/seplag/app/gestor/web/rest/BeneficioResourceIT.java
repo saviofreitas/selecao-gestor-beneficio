@@ -37,6 +37,9 @@ import br.gov.seplag.app.gestor.domain.enumeration.SituacaoBeneficio;
 @SpringBootTest(classes = GestorBeneficioApp.class)
 public class BeneficioResourceIT {
 
+    private static final String DEFAULT_DESCRICAO = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRICAO = "BBBBBBBBBB";
+
     private static final Instant DEFAULT_DATA_CRIACAO = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATA_CRIACAO = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
@@ -91,6 +94,7 @@ public class BeneficioResourceIT {
      */
     public static Beneficio createEntity(EntityManager em) {
         Beneficio beneficio = new Beneficio()
+            .descricao(DEFAULT_DESCRICAO)
             .dataCriacao(DEFAULT_DATA_CRIACAO)
             .dataUltimaMovimentacao(DEFAULT_DATA_ULTIMA_MOVIMENTACAO)
             .situacao(DEFAULT_SITUACAO);
@@ -104,6 +108,7 @@ public class BeneficioResourceIT {
      */
     public static Beneficio createUpdatedEntity(EntityManager em) {
         Beneficio beneficio = new Beneficio()
+            .descricao(UPDATED_DESCRICAO)
             .dataCriacao(UPDATED_DATA_CRIACAO)
             .dataUltimaMovimentacao(UPDATED_DATA_ULTIMA_MOVIMENTACAO)
             .situacao(UPDATED_SITUACAO);
@@ -130,6 +135,7 @@ public class BeneficioResourceIT {
         List<Beneficio> beneficioList = beneficioRepository.findAll();
         assertThat(beneficioList).hasSize(databaseSizeBeforeCreate + 1);
         Beneficio testBeneficio = beneficioList.get(beneficioList.size() - 1);
+        assertThat(testBeneficio.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
         assertThat(testBeneficio.getDataCriacao()).isEqualTo(DEFAULT_DATA_CRIACAO);
         assertThat(testBeneficio.getDataUltimaMovimentacao()).isEqualTo(DEFAULT_DATA_ULTIMA_MOVIMENTACAO);
         assertThat(testBeneficio.getSituacao()).isEqualTo(DEFAULT_SITUACAO);
@@ -154,6 +160,24 @@ public class BeneficioResourceIT {
         assertThat(beneficioList).hasSize(databaseSizeBeforeCreate);
     }
 
+
+    @Test
+    @Transactional
+    public void checkDescricaoIsRequired() throws Exception {
+        int databaseSizeBeforeTest = beneficioRepository.findAll().size();
+        // set the field null
+        beneficio.setDescricao(null);
+
+        // Create the Beneficio, which fails.
+
+        restBeneficioMockMvc.perform(post("/api/beneficios")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(beneficio)))
+            .andExpect(status().isBadRequest());
+
+        List<Beneficio> beneficioList = beneficioRepository.findAll();
+        assertThat(beneficioList).hasSize(databaseSizeBeforeTest);
+    }
 
     @Test
     @Transactional
@@ -220,6 +244,7 @@ public class BeneficioResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(beneficio.getId().intValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
             .andExpect(jsonPath("$.[*].dataCriacao").value(hasItem(DEFAULT_DATA_CRIACAO.toString())))
             .andExpect(jsonPath("$.[*].dataUltimaMovimentacao").value(hasItem(DEFAULT_DATA_ULTIMA_MOVIMENTACAO.toString())))
             .andExpect(jsonPath("$.[*].situacao").value(hasItem(DEFAULT_SITUACAO.toString())));
@@ -236,6 +261,7 @@ public class BeneficioResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(beneficio.getId().intValue()))
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO))
             .andExpect(jsonPath("$.dataCriacao").value(DEFAULT_DATA_CRIACAO.toString()))
             .andExpect(jsonPath("$.dataUltimaMovimentacao").value(DEFAULT_DATA_ULTIMA_MOVIMENTACAO.toString()))
             .andExpect(jsonPath("$.situacao").value(DEFAULT_SITUACAO.toString()));
@@ -262,6 +288,7 @@ public class BeneficioResourceIT {
         // Disconnect from session so that the updates on updatedBeneficio are not directly saved in db
         em.detach(updatedBeneficio);
         updatedBeneficio
+            .descricao(UPDATED_DESCRICAO)
             .dataCriacao(UPDATED_DATA_CRIACAO)
             .dataUltimaMovimentacao(UPDATED_DATA_ULTIMA_MOVIMENTACAO)
             .situacao(UPDATED_SITUACAO);
@@ -275,6 +302,7 @@ public class BeneficioResourceIT {
         List<Beneficio> beneficioList = beneficioRepository.findAll();
         assertThat(beneficioList).hasSize(databaseSizeBeforeUpdate);
         Beneficio testBeneficio = beneficioList.get(beneficioList.size() - 1);
+        assertThat(testBeneficio.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
         assertThat(testBeneficio.getDataCriacao()).isEqualTo(UPDATED_DATA_CRIACAO);
         assertThat(testBeneficio.getDataUltimaMovimentacao()).isEqualTo(UPDATED_DATA_ULTIMA_MOVIMENTACAO);
         assertThat(testBeneficio.getSituacao()).isEqualTo(UPDATED_SITUACAO);

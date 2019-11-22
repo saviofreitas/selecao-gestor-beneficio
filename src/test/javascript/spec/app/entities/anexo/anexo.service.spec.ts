@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(AnexoService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Anexo(0, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Anexo(0, 'AAAAAAA', 0, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -57,7 +57,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             descricao: 'BBBBBB',
-            caminho: 'BBBBBB'
+            tamanho: 1,
+            mimeType: 'BBBBBB'
           },
           elemDefault
         );
@@ -76,7 +77,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             descricao: 'BBBBBB',
-            caminho: 'BBBBBB'
+            tamanho: 1,
+            mimeType: 'BBBBBB'
           },
           elemDefault
         );

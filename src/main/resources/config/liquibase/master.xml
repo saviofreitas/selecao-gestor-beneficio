@@ -21,6 +21,7 @@
     <include file="config/liquibase/changelog/20191121165522_added_entity_Anexo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191121165523_added_entity_Setor.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191121165524_added_entity_MovimentacaoBeneficio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191122125700_added_entity_ConteudoAnexo.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20191121165519_added_entity_constraints_Servidor.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191121165520_added_entity_constraints_Beneficio.xml" relativeToChangelogFile="false"/>

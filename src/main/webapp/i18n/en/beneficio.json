@@ -2,8 +2,8 @@
   "gestorBeneficioApp": {
     "beneficio": {
       "home": {
-        "title": "Benefícios",
-        "createLabel": "Novo Benefício",
+        "title": "Beneficios",
+        "createLabel": "Create a new Beneficio",
         "createOrEditLabel": "Create or edit a Beneficio",
         "notFound": "No Beneficios found"
       },
@@ -16,6 +16,7 @@
       "detail": {
         "title": "Beneficio"
       },
+      "descricao": "Descricao",
       "dataCriacao": "Data Criacao",
       "dataUltimaMovimentacao": "Data Ultima Movimentacao",
       "situacao": "Situacao",
