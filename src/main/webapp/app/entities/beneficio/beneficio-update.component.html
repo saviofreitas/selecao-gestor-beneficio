@@ -20,58 +20,12 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gestorBeneficioApp.beneficio.dataCriacao" for="field_dataCriacao">Data Criacao</label>
-                    <div class="d-flex">
-                        <input id="field_dataCriacao" type="datetime-local" class="form-control" name="dataCriacao" formControlName="dataCriacao" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                    <div *ngIf="editForm.get('dataCriacao').invalid && (editForm.get('dataCriacao').dirty || editForm.get('dataCriacao').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('dataCriacao').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('dataCriacao').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
-                            This field should be a date and time.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gestorBeneficioApp.beneficio.dataUltimaMovimentacao" for="field_dataUltimaMovimentacao">Data Ultima Movimentacao</label>
-                    <div class="d-flex">
-                        <input id="field_dataUltimaMovimentacao" type="datetime-local" class="form-control" name="dataUltimaMovimentacao" formControlName="dataUltimaMovimentacao" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                    <div *ngIf="editForm.get('dataUltimaMovimentacao').invalid && (editForm.get('dataUltimaMovimentacao').dirty || editForm.get('dataUltimaMovimentacao').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('dataUltimaMovimentacao').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('dataUltimaMovimentacao').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
-                            This field should be a date and time.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gestorBeneficioApp.beneficio.situacao" for="field_situacao">Situacao</label>
-                    <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao">
-                        <option value="PENDENTE">{{'gestorBeneficioApp.SituacaoBeneficio.PENDENTE' | translate}}</option>
-                        <option value="INDEFERIDO">{{'gestorBeneficioApp.SituacaoBeneficio.INDEFERIDO' | translate}}</option>
-                        <option value="DEFERIDO">{{'gestorBeneficioApp.SituacaoBeneficio.DEFERIDO' | translate}}</option>
-                    </select>
-                    <div *ngIf="editForm.get('situacao').invalid && (editForm.get('situacao').dirty || editForm.get('situacao').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('situacao').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestorBeneficioApp.beneficio.servidor" for="field_servidor">Servidor</label>
                     <select class="form-control" id="field_servidor" name="servidor" formControlName="servidor">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="servidorOption.id === editForm.get('servidor').value?.id ? editForm.get('servidor').value : servidorOption" *ngFor="let servidorOption of servidors; trackBy: trackServidorById">{{servidorOption.id}}</option>
+                        <option [ngValue]="servidorOption.id === editForm.get('servidor').value?.id ? editForm.get('servidor').value : servidorOption" *ngFor="let servidorOption of servidors; trackBy: trackServidorById">{{servidorOption.nome}}</option>
                     </select>
                 </div>
             </div>

@@ -17,23 +17,21 @@
                 <dd>
                     <span>{{anexo.mimeType}}</span>
                 </dd>
-                <dt><span jhiTranslate="gestorBeneficioApp.anexo.conteudoAnexo">Conteudo Anexo</span></dt>
-                <dd>
-                    <div *ngIf="anexo.conteudoAnexo">
-                        <a [routerLink]="['/conteudo-anexo', anexo.conteudoAnexo?.id, 'view']">{{anexo.conteudoAnexo?.id}}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="gestorBeneficioApp.anexo.categoria">Categoria</span></dt>
                 <dd>
                     <div *ngIf="anexo.categoria">
-                        <a [routerLink]="['/categoria-anexo', anexo.categoria?.id, 'view']">{{anexo.categoria?.id}}</a>
+                        <a [routerLink]="['/categoria-anexo', anexo.categoria?.id, 'view']">{{anexo.categoria?.descricao}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="gestorBeneficioApp.anexo.beneficio">Beneficio</span></dt>
                 <dd>
                     <div *ngIf="anexo.beneficio">
-                        <a [routerLink]="['/beneficio', anexo.beneficio?.id, 'view']">{{anexo.beneficio?.id}}</a>
+                        <a [routerLink]="['/beneficio', anexo.beneficio?.id, 'view']">{{anexo.beneficio?.descricao}}</a>
                     </div>
+                </dd>
+                <dt><span >Download</span></dt>
+                <dd>
+                    <a (click)="downloadDocument(anexo)">{{ anexo.descricao }}</a>
                 </dd>
             </dl>
 

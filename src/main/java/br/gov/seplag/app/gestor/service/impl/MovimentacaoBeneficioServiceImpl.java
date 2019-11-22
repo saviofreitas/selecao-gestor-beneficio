@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.Optional;
 
 /**
@@ -37,6 +38,19 @@ public class MovimentacaoBeneficioServiceImpl implements MovimentacaoBeneficioSe
     @Override
     public MovimentacaoBeneficio save(MovimentacaoBeneficio movimentacaoBeneficio) {
         log.debug("Request to save MovimentacaoBeneficio : {}", movimentacaoBeneficio);
+        
+        if(movimentacaoBeneficio.getId() != null) {
+        	MovimentacaoBeneficio movimentacaoAnterior = movimentacaoBeneficioRepository.findById(movimentacaoBeneficio.getId()).get();
+        	MovimentacaoBeneficio movimentacao = new MovimentacaoBeneficio();
+            movimentacao.setSetorOrigem(movimentacaoAnterior.getSetorDestino());
+            movimentacao.setSetorDestino(movimentacaoBeneficio.getSetorDestino());
+            movimentacao.setDataTramitacao(Instant.now());
+            movimentacao.setBeneficio(movimentacaoBeneficio.getBeneficio());
+            movimentacao.setResponsavel("Usuário Logado");
+        
+            return movimentacaoBeneficioRepository.save(movimentacao);
+        }
+        
         return movimentacaoBeneficioRepository.save(movimentacaoBeneficio);
     }
 

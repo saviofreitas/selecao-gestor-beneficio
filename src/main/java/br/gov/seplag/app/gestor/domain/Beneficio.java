@@ -1,13 +1,25 @@
 package br.gov.seplag.app.gestor.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.gov.seplag.app.gestor.domain.enumeration.SituacaoBeneficio;
 
@@ -28,20 +40,18 @@ public class Beneficio implements Serializable {
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
-    @NotNull
     @Column(name = "data_criacao", nullable = false)
     private Instant dataCriacao;
 
-    @NotNull
     @Column(name = "data_ultima_movimentacao", nullable = false)
     private Instant dataUltimaMovimentacao;
 
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao", nullable = false)
-    private SituacaoBeneficio situacao;
+    private SituacaoBeneficio situacao = SituacaoBeneficio.PENDENTE;
 
-    @OneToMany(mappedBy = "beneficio")
+    @OneToMany(mappedBy = "beneficio", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Anexo> anexos = new HashSet<>();
 
     @ManyToOne
@@ -146,9 +156,10 @@ public class Beneficio implements Serializable {
     public void setServidor(Servidor servidor) {
         this.servidor = servidor;
     }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
-    @Override
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

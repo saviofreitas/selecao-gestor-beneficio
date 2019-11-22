@@ -20,9 +20,6 @@
             <tr>
             <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
             <th scope="col" ><span jhiTranslate="gestorBeneficioApp.anexo.descricao">Descricao</span></th>
-            <th scope="col" ><span jhiTranslate="gestorBeneficioApp.anexo.tamanho">Tamanho</span></th>
-            <th scope="col" ><span jhiTranslate="gestorBeneficioApp.anexo.mimeType">Mime Type</span></th>
-            <th scope="col" ><span jhiTranslate="gestorBeneficioApp.anexo.conteudoAnexo">Conteudo Anexo</span></th>
             <th scope="col" ><span jhiTranslate="gestorBeneficioApp.anexo.categoria">Categoria</span></th>
             <th scope="col" ><span jhiTranslate="gestorBeneficioApp.anexo.beneficio">Beneficio</span></th>
             <th scope="col"></th>
@@ -32,21 +29,14 @@
             <tr *ngFor="let anexo of anexos ;trackBy: trackId">
                 <td><a [routerLink]="['/anexo', anexo.id, 'view' ]">{{anexo.id}}</a></td>
                 <td>{{anexo.descricao}}</td>
-                <td>{{anexo.tamanho}}</td>
-                <td>{{anexo.mimeType}}</td>
-                <td>
-                    <div *ngIf="anexo.conteudoAnexo">
-                        <a [routerLink]="['/conteudo-anexo', anexo.conteudoAnexo?.id, 'view' ]" >{{anexo.conteudoAnexo?.id}}</a>
-                    </div>
-                </td>
                 <td>
                     <div *ngIf="anexo.categoria">
-                        <a [routerLink]="['/categoria-anexo', anexo.categoria?.id, 'view' ]" >{{anexo.categoria?.id}}</a>
+                        <a [routerLink]="['/categoria-anexo', anexo.categoria?.id, 'view' ]" >{{anexo.categoria?.descricao}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="anexo.beneficio">
-                        <a [routerLink]="['/beneficio', anexo.beneficio?.id, 'view' ]" >{{anexo.beneficio?.id}}</a>
+                        <a [routerLink]="['/beneficio', anexo.beneficio?.id, 'view' ]" >{{anexo.beneficio?.descricao}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -2,6 +2,7 @@ package br.gov.seplag.app.gestor.web.rest;
 
 import br.gov.seplag.app.gestor.domain.Anexo;
 import br.gov.seplag.app.gestor.service.AnexoService;
+import br.gov.seplag.app.gestor.web.rest.errors.AnexoNotFoundException;
 import br.gov.seplag.app.gestor.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -9,8 +10,11 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -116,4 +120,16 @@ public class AnexoResource {
         anexoService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/anexos/{id}/$conteudoAnexo")
+    public ResponseEntity<byte[]> getDocumentContent(@PathVariable Long id) {
+       Anexo document = anexoService.findOneById(id)
+           .orElseThrow(AnexoNotFoundException::new);
+
+       return ResponseEntity.ok()
+           .contentType(MediaType.parseMediaType(document.getMimeType()))
+           .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + document.getDescricao() + "\"")
+           .body(document.retrieveContent());
+    }
+
 }

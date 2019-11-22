@@ -16,7 +16,7 @@
                 <dt><span jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.beneficio">Beneficio</span></dt>
                 <dd>
                     <div *ngIf="movimentacaoBeneficio.beneficio">
-                        <a [routerLink]="['/beneficio', movimentacaoBeneficio.beneficio?.id, 'view']">{{movimentacaoBeneficio.beneficio?.id}}</a>
+                        <a [routerLink]="['/beneficio', movimentacaoBeneficio.beneficio?.id, 'view']">{{movimentacaoBeneficio.beneficio?.descricao}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="gestorBeneficioApp.movimentacaoBeneficio.setorOrigem">Setor Origem</span></dt>

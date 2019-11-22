@@ -51,7 +51,7 @@
                     <label class="form-control-label" jhiTranslate="gestorBeneficioApp.servidor.orgao" for="field_orgao">Orgao</label>
                     <select class="form-control" id="field_orgao" name="orgao" formControlName="orgao">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="orgaoOption.id === editForm.get('orgao').value?.id ? editForm.get('orgao').value : orgaoOption" *ngFor="let orgaoOption of orgaos; trackBy: trackOrgaoById">{{orgaoOption.id}}</option>
+                        <option [ngValue]="orgaoOption.id === editForm.get('orgao').value?.id ? editForm.get('orgao').value : orgaoOption" *ngFor="let orgaoOption of orgaos; trackBy: trackOrgaoById">{{orgaoOption.descricao}}</option>
                     </select>
                 </div>
             </div>

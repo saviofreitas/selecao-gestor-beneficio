@@ -30,7 +30,7 @@ public class Anexo implements Serializable {
     @Column(name = "mime_type")
     private String mimeType;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(unique = true)
     private ConteudoAnexo conteudoAnexo;
 
@@ -41,7 +41,18 @@ public class Anexo implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("anexos")
     private Beneficio beneficio;
+    
+    public void addContent(byte[] data) {
+    	ConteudoAnexo conteudoAnexo = new ConteudoAnexo();
+    	conteudoAnexo.setData(data);
+    	conteudoAnexo.setDataContentType("not-used");
+    	
+    	this.conteudoAnexo = conteudoAnexo;
+    }
 
+    public byte[] retrieveContent() {
+    	return conteudoAnexo.getData();
+    }
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;

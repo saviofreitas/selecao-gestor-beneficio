@@ -24,10 +24,11 @@
                 <dt><span jhiTranslate="gestorBeneficioApp.beneficio.servidor">Servidor</span></dt>
                 <dd>
                     <div *ngIf="beneficio.servidor">
-                        <a [routerLink]="['/servidor', beneficio.servidor?.id, 'view']">{{beneficio.servidor?.id}}</a>
+                        <a [routerLink]="['/servidor', beneficio.servidor?.id, 'view']">{{beneficio.servidor?.nome}}</a>
                     </div>
                 </dd>
             </dl>
+
 
             <button type="submit"
                     (click)="previousState()"

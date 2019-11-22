@@ -75,4 +75,9 @@ public class AnexoServiceImpl implements AnexoService {
         log.debug("Request to delete Anexo : {}", id);
         anexoRepository.deleteById(id);
     }
+    
+    @Override
+    public Optional<Anexo> findOneById(Long id) {
+    	return anexoRepository.findOneById(id);
+    }
 }

@@ -36,7 +36,7 @@
                 <td jhiTranslate="{{'gestorBeneficioApp.SituacaoBeneficio.' + beneficio.situacao}}">{{beneficio.situacao}}</td>
                 <td>
                     <div *ngIf="beneficio.servidor">
-                        <a [routerLink]="['/servidor', beneficio.servidor?.id, 'view' ]" >{{beneficio.servidor?.id}}</a>
+                        <a [routerLink]="['/servidor', beneficio.servidor?.id, 'view' ]" >{{beneficio.servidor?.nome}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -25,9 +25,6 @@ export class BeneficioUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     descricao: [null, [Validators.required]],
-    dataCriacao: [null, [Validators.required]],
-    dataUltimaMovimentacao: [null, [Validators.required]],
-    situacao: [null, [Validators.required]],
     servidor: []
   });
 
@@ -53,9 +50,6 @@ export class BeneficioUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: beneficio.id,
       descricao: beneficio.descricao,
-      dataCriacao: beneficio.dataCriacao != null ? beneficio.dataCriacao.format(DATE_TIME_FORMAT) : null,
-      dataUltimaMovimentacao: beneficio.dataUltimaMovimentacao != null ? beneficio.dataUltimaMovimentacao.format(DATE_TIME_FORMAT) : null,
-      situacao: beneficio.situacao,
       servidor: beneficio.servidor
     });
   }
@@ -79,13 +73,6 @@ export class BeneficioUpdateComponent implements OnInit {
       ...new Beneficio(),
       id: this.editForm.get(['id']).value,
       descricao: this.editForm.get(['descricao']).value,
-      dataCriacao:
-        this.editForm.get(['dataCriacao']).value != null ? moment(this.editForm.get(['dataCriacao']).value, DATE_TIME_FORMAT) : undefined,
-      dataUltimaMovimentacao:
-        this.editForm.get(['dataUltimaMovimentacao']).value != null
-          ? moment(this.editForm.get(['dataUltimaMovimentacao']).value, DATE_TIME_FORMAT)
-          : undefined,
-      situacao: this.editForm.get(['situacao']).value,
       servidor: this.editForm.get(['servidor']).value
     };
   }

@@ -1,16 +1,21 @@
 package br.gov.seplag.app.gestor.service.impl;
 
-import br.gov.seplag.app.gestor.service.BeneficioService;
-import br.gov.seplag.app.gestor.domain.Beneficio;
-import br.gov.seplag.app.gestor.repository.BeneficioRepository;
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import br.gov.seplag.app.gestor.domain.Beneficio;
+import br.gov.seplag.app.gestor.domain.MovimentacaoBeneficio;
+import br.gov.seplag.app.gestor.domain.Setor;
+import br.gov.seplag.app.gestor.repository.BeneficioRepository;
+import br.gov.seplag.app.gestor.service.BeneficioService;
+import br.gov.seplag.app.gestor.service.MovimentacaoBeneficioService;
+import br.gov.seplag.app.gestor.service.SetorService;
 
 /**
  * Service Implementation for managing {@link Beneficio}.
@@ -22,9 +27,15 @@ public class BeneficioServiceImpl implements BeneficioService {
     private final Logger log = LoggerFactory.getLogger(BeneficioServiceImpl.class);
 
     private final BeneficioRepository beneficioRepository;
+    
+    private final MovimentacaoBeneficioService movimentacaoService;
+    
+    private final SetorService setorService;
 
-    public BeneficioServiceImpl(BeneficioRepository beneficioRepository) {
+    public BeneficioServiceImpl(BeneficioRepository beneficioRepository, MovimentacaoBeneficioService movimentacaoService, SetorService setorService) {
         this.beneficioRepository = beneficioRepository;
+        this.movimentacaoService = movimentacaoService;
+        this.setorService = setorService;
     }
 
     /**
@@ -36,10 +47,35 @@ public class BeneficioServiceImpl implements BeneficioService {
     @Override
     public Beneficio save(Beneficio beneficio) {
         log.debug("Request to save Beneficio : {}", beneficio);
-        return beneficioRepository.save(beneficio);
+        boolean inclusao = beneficio.getId() == null; 
+        if(inclusao) {
+        	beneficio.setDataCriacao(Instant.now());
+        }
+        beneficio.setDataUltimaMovimentacao(Instant.now());
+        beneficio = beneficioRepository.save(beneficio);
+        
+        registrarMovimentacao(beneficio, inclusao);
+        
+        return beneficio;
     }
+    
+    private void registrarMovimentacao(Beneficio beneficio, boolean inclusao) {
+		if(inclusao) {
+	        Optional<Setor> setorCriacao = setorService.findOne(1l);
+	        Optional<Setor> gestorCprev = setorService.findOne(2l);
 
-    /**
+			MovimentacaoBeneficio movimentacao = new MovimentacaoBeneficio();
+	        movimentacao.setSetorOrigem(setorCriacao.get());
+	        movimentacao.setSetorDestino(gestorCprev.get());
+	        movimentacao.setDataTramitacao(Instant.now());
+	        movimentacao.setBeneficio(beneficio);
+	        movimentacao.setResponsavel("Usuário Logado");
+
+	        movimentacaoService.save(movimentacao);
+		}
+	}
+
+	/**
      * Get all the beneficios.
      *
      * @return the list of entities.
