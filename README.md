@@ -12,5 +12,7 @@ Depois de baixar o projeto (e entrar na pasta):
 
 ### Tecnologias
 
-Angular 8
-SpringBoot
+Angular 8,
+SpringBoot,
+Liquibase (versionamento de banco de dados),
+Banco de dados H2
