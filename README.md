@@ -16,3 +16,6 @@ Angular 8,
 SpringBoot,
 Liquibase (versionamento de banco de dados),
 Banco de dados H2
+
+### Acesso
+Usuário/senha: admin/admin
